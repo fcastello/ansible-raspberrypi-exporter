@@ -37,7 +37,7 @@ Example Playbook
 
 ```yaml
 - hosts: all
- - name: Docker
+ - name: Raspberry pi exporter
     import_role:
       name: fcastello.raspberrypi_exporter
 ```
