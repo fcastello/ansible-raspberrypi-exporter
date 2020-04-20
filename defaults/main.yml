@@ -1,0 +1,17 @@
+---
+# Path where to install the exporter script
+raspberrypi_exporter_script_path: /usr/local/bin
+# Path the textfile collector file will be written
+raspberrypi_exporter_textcollector_path: /var/lib/node_exporter/textfile_collector/
+# Filename the textfile collector file will be written
+raspberrypi_exporter_textcollector_file: raspberrypi-metrics.prom
+# Systemd default directory
+raspberrypi_exporter_systemd_dir: /etc/systemd/system
+
+# Prefix for the metrics
+raspberrypi_exporter_metrics_prefix: rpi_
+
+# How ofter to collect metrics
+# this is in systemd timer format
+# By default it collects every 15 seconds
+raspberrypi_exporter_metrics_timer: "*:*:0,15,30,45"

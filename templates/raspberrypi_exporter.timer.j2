@@ -1,0 +1,8 @@
+[Unit]
+Description=Timer for the Raspberry Pi Prometheus exporter
+
+[Timer]
+OnCalendar={{ raspberrypi_exporter_metrics_timer }}
+
+[Install]
+WantedBy=timers.target

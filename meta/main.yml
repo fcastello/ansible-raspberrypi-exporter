@@ -1,0 +1,19 @@
+galaxy_info:
+  role_name: raspberrypi_exporter
+  author: Francisco Castello
+  description: Role to install Raspberrypi exporter textfile collector
+  company: pancho.dev
+  license: license (MIT)
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - node-exporter
+    - prometheus
+    - raspberry
+    - pi

@@ -1,0 +1,57 @@
+---
+
+- name: Install raspi2 ppa
+  apt_repository:
+    repo: ppa:ubuntu-raspi2/ppa
+  when: ansible_distribution | lower == "ubuntu"
+
+- name: Add groups needed for rpi tools
+  group:
+    name: "{{ item }}"
+    state: present
+    system: yes
+  with_items:
+    - gpio
+    - i2c
+    - input
+    - spi
+  when: ansible_distribution | lower == "ubuntu"
+
+- name: Install standard libs and tools for rpi
+  apt:
+    name: libraspberrypi-bin
+    state: present
+    update_cache: yes
+  when: ansible_distribution | lower == "ubuntu"
+
+- name: Create directory if it doesnt exists
+  file:
+    path: "{{ raspberrypi_exporter_textcollector_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy script file
+  template:
+    src: raspberrypi_exporter.j2
+    dest: "{{ raspberrypi_exporter_script_path }}/raspberrypi_exporter"
+    mode: '0755'
+
+- name: Copy systemd unit file
+  template:
+    src: raspberrypi_exporter.service.j2
+    dest: "{{ raspberrypi_exporter_systemd_dir }}/raspberrypi_exporter.service"
+    mode: '0755'
+
+- name: Copy systemd timer file
+  template:
+    src: raspberrypi_exporter.timer.j2
+    dest: "{{ raspberrypi_exporter_systemd_dir }}/raspberrypi_exporter.timer"
+    mode: '0644'
+
+- name: Enable timer for exporter
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+    masked: no
+    name: raspberrypi_exporter.timer
