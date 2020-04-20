@@ -13,7 +13,9 @@ galaxy_info:
       versions:
         - all
   galaxy_tags:
-    - node-exporter
+    - node
+    - exporter
+    - collector
     - prometheus
     - raspberry
     - pi
