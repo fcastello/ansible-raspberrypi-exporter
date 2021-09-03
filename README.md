@@ -45,7 +45,8 @@ Example Playbook
 Limitations
 -----------
 
-- Tested with Ubuntu 18.04 only
+- Tested with Ubuntu 18.04 and 20.04 only
+- Should support 16.04 and 16.10 as well
 
 License
 -------

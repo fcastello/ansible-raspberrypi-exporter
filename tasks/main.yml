@@ -3,7 +3,7 @@
 - name: Install raspi2 ppa
   apt_repository:
     repo: ppa:ubuntu-raspi2/ppa
-  when: ansible_distribution | lower == "ubuntu"
+  when: ansible_distribution | lower == "ubuntu" and (ansible_lsb.codename|lower == bionic or ansible_lsb.codename|lower == xenial or ansible_lsb.codename|lower == yakkety)
 
 - name: Add groups needed for rpi tools
   group:
